@@ -69,7 +69,7 @@ async function getHighScores() {
   scoreboard = [];
 
   const querySnapshot = await getDocs(
-    query(scoreboardRef, orderBy("score", "desc", 5))
+    query(scoreboardRef, orderBy("score", "desc"), limit(5))
   );
   querySnapshot.forEach((doc) => {
     let scoreData = doc.data();
