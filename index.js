@@ -141,9 +141,9 @@ window.draw = () => {
   textAlign(CENTER);
   text('Move your mouse to avoid the asteroids!', width / 2, height / 16);
 
-  kitty.position.x = mouseX;
-  kitty.position.y = mouseY;
-  //kitty.moveTowards(mouse);
+  //kitty.position.x = mouseX;
+  //kitty.position.y = mouseY;
+  kitty.moveTowards(mouse);
   if (alive) {
     text('Time: ' + survivalTime + ' seconds', width / 2, height*2 / 16);
   } else {
