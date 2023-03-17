@@ -112,7 +112,7 @@ onSnapshot(
 */
 
 //the game
-let kitty, kittyImg, asteroids, asteroidImg, survivalTime, score, alive=true;
+let kitty, kittyImg, asteroids, asteroidImg, survivalTime, score;
 
 window.preload = () => {
 //function preload() {
@@ -144,10 +144,10 @@ window.draw = () => {
   //kitty.position.x = mouseX;
   //kitty.position.y = mouseY;
   kitty.moveTowards(mouse);
-  if (alive) {
-    text('Time: ' + survivalTime + ' seconds', width / 2, height*2 / 16);
+  if (survivalTime == 1) {
+    text('Time: ' + survivalTime + ' second', width / 2, height*2 / 16);
   } else {
-    text('Submit your scores below to play again!', width / 2, height / 2);
+    text('Time: ' + survivalTime + ' seconds', width / 2, height*2 / 16);
   }
 
   // from p5play.org demos
@@ -162,7 +162,6 @@ window.draw = () => {
   if (kitty.collides(asteroids)) {
     score = survivalTime;
     asteroids.remove();
-    alive = false;
     console.log("cool this game workds");
     nameView();
   }
@@ -182,7 +181,6 @@ function createAsteroids() {
 //window.resetGame = () => {
 function resetGame() {
   survivalTime = 0;
-  alive = true;
   document.getElementById("scoreboard").style.display = "none";
   createAsteroids();
 }
