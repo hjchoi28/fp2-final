@@ -52,13 +52,28 @@ function view() {
       <input type="button" value="Submit" @click=${getHighScores} />
     </div>`;
 }
-
+//${scoreboard.map((s) => html`<div="scores>${s.nickname}: ${s.score}</div>`)}
 function scoreView() {
+  let rank = 0;
   return html`
     <div id="scoreboard-container">
       <h1>Leaderboard</h1>
-      ${scoreboard.map((s) => html`<div class="score">${s.nickname}: ${s.score}</div>`)}
-      <input type="button" value="Play Again" @click=${resetGame} /><br>
+      <table id="leaderboard">
+        <tr>
+          <th>Rank</th>
+          <th>Nickname</th>
+          <th>Score</th>
+        </tr>
+        ${scoreboard.map((s) => html`
+          <tr>
+            <td>${rank+=1}</td>
+            <td>${s.nickname}</td>
+            <td>${s.score}</td>
+          </tr>
+        `)}
+      </table>
+
+      <input type="button" value="Play Again" @click=${resetGame} />
     </div>`;
 }
 
@@ -72,7 +87,7 @@ async function getHighScores() {
   scoreboard = [];
 
   const querySnapshot = await getDocs(
-    query(scoreboardRef, orderBy("score", "desc"), limit(5))
+    query(scoreboardRef, orderBy("score", "desc"), orderBy("time"), limit(5)) //order by time ascending
   );
   querySnapshot.forEach((doc) => {
     let scoreData = doc.data();
