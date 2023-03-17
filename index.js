@@ -45,24 +45,27 @@ function handleInput(e) {
 }
 
 function view() {
-  return html`<h1>Nickname</h1>
+  return html`
     <div id="name-container">
+      <h1>Nickname</h1>
       <p>Press ENTER key to submit name BEFORE viewing scores</p>
-      <input type="text" value="PLAYER" @keydown=${handleInput} /><br><br>
+      <input type="text" value="PLAYER" @keydown=${handleInput} /><br>
       <input type="button" value="View Scores" @click=${getHighScores} />
     </div>`;
 }
 
 function scoreView() {
-  return html`<h1>Leaderboard</h1>
+  return html`
     <div id="scoreboard-container">
-      <input type="button" value="Play Again" @click=${resetGame} /><br><br>
-      ${scoreboard.map((s) => html`<div class="score">${s.nickname}, ${s.score}</div>`)}
+      <h1>Top 5 Scores</h1>
+      <input type="button" value="Play Again" @click=${resetGame} /><br>
+      ${scoreboard.map((s) => html`<div class="score">${s.nickname}: ${s.score}</div>`)}
     </div>`;
 }
 
 function nameView() {
-  render(view(), document.body);
+  document.getElementById("scoreboard").style.display = "block";
+  render(view(), document.getElementById("scoreboard"));
 }
 
 async function getHighScores() {
@@ -77,7 +80,7 @@ async function getHighScores() {
   });
 
   console.log(scoreboard);
-  render(scoreView(), document.body);
+  render(scoreView(), document.getElementById("scoreboard"));
 }
 
 /*
@@ -91,24 +94,6 @@ onSnapshot(
     console.error(error);
   }
 );
-*/
-/*
-function view() {
-  return html`<h1>Lorem Ipsum</h1>
-    <p>
-      Dolor sit amet consectetur adipisicing elit. Maxime quis, iusto iste ea
-      eaque rem obcaecati nemo tempore, quas quaerat, recusandae aut alias? Quo,
-      <strong>fugiat</strong> consequatur explicabo minus nisi omnis saepe
-      laboriosam, consectetur, aperiam impedit perferendis odio ea odit quod!
-      Alias, quia! Ea porro recusandae <strong>excepturi</strong>, architecto
-      odio?
-    </p>
-    <p>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Surprise me!</a>
-    </p>`;
-}
-
-render(view(), document.body);
 */
 
 //the game
@@ -126,7 +111,7 @@ window.preload = () => {
 
 window.setup = () => {
 //function setup() {
-  new Canvas(windowWidth, windowHeight*3/4);
+  new Canvas(windowWidth, windowHeight);
   survivalTime = 0;
   setInterval(timer,1000);
   createAsteroids();
@@ -139,7 +124,7 @@ window.draw = () => {
   fill(255); //white
   textSize(20);
   textAlign(CENTER);
-  text('Move your mouse to avoid the asteroids!', width / 2, height / 16);
+  text('Guide space kitty away from the asteroids!', width / 2, height / 16);
 
   //kitty.position.x = mouseX;
   //kitty.position.y = mouseY;
@@ -163,6 +148,7 @@ window.draw = () => {
     score = survivalTime;
     asteroids.remove();
     alive = false;
+    console.log("cool this game workds");
     nameView();
   }
 }
@@ -182,6 +168,7 @@ function createAsteroids() {
 function resetGame() {
   survivalTime = 0;
   alive = true;
+  document.getElementById("scoreboard").style.display = "none";
   createAsteroids();
 }
 

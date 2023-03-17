@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  overflow: hidden;
   max-width: 50rem;
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
@@ -7,15 +8,27 @@ body {
   padding-bottom: 2rem;
 }
 
-h1,
-strong {
-  color: #333;
+#scoreboard-container,
+#name-container {
+  display: flex;
+  color: whitesmoke;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10%;
 }
 
-a {
-  color: #c75a00;
-}
-
-h1, #name-container, #scoreboard-container {
-  margin-left: 4rem;
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11,11,70,1); /* background */
+  color: whitesmoke;
+  cursor: pointer; /* Add a pointer on hover */
+  z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
 }
