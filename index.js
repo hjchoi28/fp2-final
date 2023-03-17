@@ -162,7 +162,7 @@ window.draw = () => {
   if (kitty.collides(asteroids)) {
     score = survivalTime;
     asteroids.remove();
-    console.log("cool this game workds");
+    //console.log("cool this game works");
     nameView();
   }
 }

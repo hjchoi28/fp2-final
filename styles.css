@@ -3,9 +3,11 @@ body {
   overflow: hidden;
   max-width: 50rem;
   font-family: "Poppins";
+  font-size: 20px;
   line-height: 1.5;
   color: #555;
   padding-bottom: 2rem;
+  cursor: url(https://cdn-icons-png.flaticon.com/16/4753/4753869.png), crosshair; /*when guiding space kitty*/
 }
 
 #scoreboard-container,
@@ -29,6 +31,30 @@ body {
   bottom: 0;
   background-color: rgba(11,11,70,1); /* background */
   color: whitesmoke;
-  cursor: pointer; /* Add a pointer on hover */
+  cursor: auto;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+input[type=button]:hover {
+  cursor: pointer;
+}
+
+input[type=button], input[type=text] {
+  margin: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: medium;
+}
+
+#leaderboard {
+  border: 4px solid;
+  width: 50%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+#leaderboard td, #leaderboard th {
+  border: 1px solid;
+  padding: 10px;
 }
