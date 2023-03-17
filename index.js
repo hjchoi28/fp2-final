@@ -2,7 +2,7 @@ import { html, render } from "lit-html";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, query, getDocs, orderBy, onSnapshot, limit } from "firebase/firestore";
+import { getFirestore, collection, addDoc, query, getDocs, orderBy, limit } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
