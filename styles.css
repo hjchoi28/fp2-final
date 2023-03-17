@@ -14,7 +14,7 @@ body {
   color: whitesmoke;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; /*fixes issue with <br>*/
   margin-top: 10%;
 }
 

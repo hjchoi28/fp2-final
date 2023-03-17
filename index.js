@@ -36,30 +36,29 @@ async function sendName(name) {
     console.error("Error adding document: ", e);
   }
 }
-
+ /*
 function handleInput(e) {
-  if (e.key == "Enter") {
-    sendName(e.target.value);
-    e.target.value = "";
-  }
+  sendName(e.target.value);
+  e.target.value = "";
 }
+*/
 
 function view() {
   return html`
     <div id="name-container">
       <h1>Nickname</h1>
-      <p>Press ENTER key to submit name BEFORE viewing scores</p>
-      <input type="text" value="PLAYER" @keydown=${handleInput} /><br>
-      <input type="button" value="View Scores" @click=${getHighScores} />
+      <p>Your Survival Score: ${score}</p>
+      <input type="text" value="PLAYER" id="username"/>
+      <input type="button" value="Submit" @click=${getHighScores} />
     </div>`;
 }
 
 function scoreView() {
   return html`
     <div id="scoreboard-container">
-      <h1>Top 5 Scores</h1>
-      <input type="button" value="Play Again" @click=${resetGame} /><br>
+      <h1>Leaderboard</h1>
       ${scoreboard.map((s) => html`<div class="score">${s.nickname}: ${s.score}</div>`)}
+      <input type="button" value="Play Again" @click=${resetGame} /><br>
     </div>`;
 }
 
@@ -69,6 +68,7 @@ function nameView() {
 }
 
 async function getHighScores() {
+  sendName(document.getElementById("username").value);
   scoreboard = [];
 
   const querySnapshot = await getDocs(
